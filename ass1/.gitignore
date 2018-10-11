@@ -1,4 +1,8 @@
 octave_workspace
 *.gz
 *.zip
+*.fdb_latexmk
+*.fls
+*.log
+*.aux
 
