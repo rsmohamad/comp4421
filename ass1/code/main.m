@@ -64,7 +64,7 @@ dft_spectrum = mat2gray(dft_spectrum);
 idft_img = dft_2d(dft_img, 'IDFT');
 
 % Transform idft_img to a real-value matrix
-real_img = real(idft_img);
+real_img = abs(idft_img);
 real_img = mat2gray(real_img);
 
 figure,
@@ -91,8 +91,8 @@ imwrite (ave_freq, sprintf(path, 'img_ave_freq'));
 imwrite (laplacian_freq, sprintf(path, 'img_sharpen_freq'));
 
 %% Task 5: High-Frequency Emphasis
-a = 0.1;
-b = 0.9;
+a = 0.5;
+b = 2.0;
 
 butter_result = high_freq_emphasis(img, a, b, 'butterworth');
 gaussian_result = high_freq_emphasis(img, a, b, 'gaussian');

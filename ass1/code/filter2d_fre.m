@@ -9,7 +9,6 @@ function result = filter2d_fre(img_input, mask)
   
   filtered_img = (img_freq) .* (mask_freq);
   
-  result = dft_2d(filtered_img, 'IDFT');
-  result = real(result);
-  result = mat2gray(result);
+  res = dft_2d(filtered_img, 'IDFT');
+  result = mat2gray(abs(res));
   

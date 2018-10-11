@@ -16,5 +16,9 @@ clean:
 octave:
 	@cd code/ && ./main.m
 
+zip:
+	rm *.zip
+	zip -r 20316273_octave.zip code/ result_images/ a1.pdf
+
 .PHONY: $(PROGS)
 

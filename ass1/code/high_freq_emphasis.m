@@ -12,6 +12,6 @@ function img_result = high_freq_emphasis(img_input, a, b, type)
   freq_mask = a + (b * freq_mask);
   img_result = img_freq .* freq_mask;
   img_result = dft_2d(img_result, 'IDFT');
-  img_result = real(img_result);
+  img_result = abs(img_result);
   img_result = mat2gray(img_result);
     

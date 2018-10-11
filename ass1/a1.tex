@@ -53,17 +53,24 @@
 		\end{enumerate}
 
 		\pagebreak
-		\item \textbf{Spatial Non-linear Filtering}
+		\item \textbf{Spatial Non-linear Filtering} \textit{(5x5 median filter)}
 		\begin{enumerate}
 			\begin{multicols}{2}
-			\item Gaussian noise \\
+				\item Added gaussian noise \\
+			\includegraphics[scale=0.75]{task2/img_gaussian.png}
+			
+			\item Added salt and pepper noise \\
+			\includegraphics[scale=0.75]{task2/img_sp.png}
+						
+			\item Median filter on (a) \\
 			\includegraphics[scale=0.75]{task2/med_gaussian.png}
 			
-			\item Salt and pepper noise \\
+			\item Median filter on (b) \\
 			\includegraphics[scale=0.75]{task2/med_sp.png}
 			\end{multicols}
 		\end{enumerate}
 
+		\pagebreak
 		\item \textbf{Discrete Fourier Transform}
 		\begin{enumerate}
 			\begin{multicols}{2}
@@ -74,7 +81,7 @@
 			\end{multicols}
 		\end{enumerate}
 
-		\pagebreak
+		
 		\item \textbf{Filtering in the Frequency Domain}
 		\begin{enumerate}
 			\begin{multicols}{2}
@@ -85,7 +92,8 @@
 			\end{multicols}
 		\end{enumerate}
 
-		\item \textbf{High-Frequency Emphasis} \textit{(a = 0.1, b = 0.9)}
+		\pagebreak
+		\item \textbf{High-Frequency Emphasis} \textit{(a = 0.5, b = 2.0)}
 		\begin{enumerate}
 			\begin{multicols}{2}
 			\item Butterworth \\

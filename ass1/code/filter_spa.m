@@ -26,7 +26,6 @@ function img_result = filter_spa(img_input, filter)
     
     conv_res = sum((window .* filter_trimmed)(:));
     img_result(i) = conv_res;
-    
   end
   
   img_result = uint8(img_result);
