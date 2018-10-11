@@ -6,9 +6,7 @@ function dftTest()
   dft_spectrum = log10(dft_img + 1);
   dft_spectrum = mat2gray(dft_spectrum);
   
-  difference = sum(abs(dft_img - fft_img)(:))
-  
-  idft_img = dft_2d(fft_img, 'IDFT');
+  idft_img = dft_2d(dft_img, 'IDFT');
 
   % Transform idft_img to a real-value matrix
   real_img = real(idft_img);

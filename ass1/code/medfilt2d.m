@@ -3,7 +3,7 @@ function img_result = medfilt2d(img_input, filter_size)
   img_result = zeros(size(img_input));
   img_input = double(img_input);
   
-  f2 = floor(filter_size/2)
+  f2 = floor(filter_size/2);
   
   for i = 1:1:numel(img_input)
     [y, x] = ind2sub(size(img_input), i);
@@ -19,7 +19,9 @@ function img_result = medfilt2d(img_input, filter_size)
     x_max = min(img_x, x_max);
     y_max = min(img_y, y_max);
     
-    sub_img = sort(img_input(y_min:y_max, x_min:x_max)(:));
+    window = img_input(y_min:y_max, x_min:x_max);
+    
+    sub_img = sort(window(:));
     mid = int16(floor(numel(sub_img)/2) + 1);
     med_res = sub_img(mid);
     img_result(i) = med_res;  

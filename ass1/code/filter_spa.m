@@ -15,11 +15,17 @@ function img_result = filter_spa(img_input, filter)
     x_min = double(x-f2);
     x_max = double(x+f2);
     
-    if y_min > 0 && y_max <= img_y && x_min > 0 && x_max <= img_x
-      sub_img = img_input(y_min:y_max, x_min:x_max);
-      conv_res = sum((sub_img .* filter)(:));
-      img_result(i) = conv_res;
-    end
+    capped_x = [max(1, x_min):min(img_x, x_max)];
+    capped_y = [max(1, y_min):min(img_y, y_max)];
+    
+    filter_x = [1+(capped_x(1)-x_min):filter_size-(x_max-capped_x(end))];
+    filter_y = [1+(capped_y(1)-y_min):filter_size-(y_max-capped_y(end))];
+
+    filter_trimmed = filter(filter_y, filter_x);
+    window = img_input(capped_y, capped_x);
+    
+    conv_res = sum((window .* filter_trimmed)(:));
+    img_result(i) = conv_res;
     
   end
   
