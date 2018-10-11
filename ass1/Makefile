@@ -5,10 +5,16 @@ TEX=$(wildcard *.tex)
 PROGS = $(patsubst %.tex,%,$(TEX))
 TARGETS = $(patsubst %, %.pdf, $(PROGS))
 
-all: $(TARGETS)
+all: $(CLEAN) $(TARGETS)
 
 %.pdf: %.tex
 	$(COMPILER) $(OPTIONS) $<
 
 clean:
 	$(COMPILER) -CA
+
+octave:
+	@cd code/ && ./main.m
+
+.PHONY: $(PROGS)
+

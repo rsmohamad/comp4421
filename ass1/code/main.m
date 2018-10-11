@@ -1,3 +1,5 @@
+#!/usr/bin/octave -qf
+
 clc
 clear
 
@@ -99,6 +101,11 @@ figure,
 subplot(121), imshow(butter_result), title('Using Butterworth')
 subplot(122), imshow(gaussian_result), title('Using Gaussian')
 
-path = '../result_images/task5/%s_%2f_%2f.png';
+path = '../result_images/task5/%s_%f_%f.png';
 imwrite (butter_result, sprintf(path, 'butter_emphasis', a, b));
 imwrite (gaussian_result, sprintf(path, 'gaussian_emphasis', a, b));
+
+% Remove parameters from filename for latex
+path = '../result_images/task5/%s.png';
+imwrite (butter_result, sprintf(path, 'butter_emphasis'));
+imwrite (gaussian_result, sprintf(path, 'gaussian_emphasis'));
