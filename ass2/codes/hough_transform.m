@@ -32,27 +32,29 @@ function [img_marked, corners] = hough_transform(img)
   % Vectorized hough transform
   [y, x] = find(edge);
   numEdges = length(x);  
-  angles = 0:pi/720:pi-(8*pi/720);  
+  
+  angles = 0:pi/720: pi-(8*pi/720);  
+  
   N = length(angles);  
   sinVector = sin(angles);
   cosVector = cos(angles);
+  
   shift = norm(size(img)) + 1;
-  [Y, X] = size(img);
   
   rho = floor(([x, y] * [cosVector; sinVector]) + shift);
   map = full(sparse(rho, repmat(1:N, [numEdges, 1]), 1));
-  [_, idx] = sort(map(:), 'descend');
   
+  
+  [_, idx] = sort(map(:), 'descend');  
   [rhos thetas] = ind2sub(size(map), idx(1:72)); 
+  
   houghlines = [rhos, thetas];
-  [R T] = size(map);
   
   % Remove local duplicates
   peaks = [];
-  done = false;
   rho_dist = shift/8.;
   the_dist = N/9.;
-  while ~done
+  while ~isempty(houghlines)
     hough_point = houghlines(1, :);
     peaks = [peaks; hough_point];
     min_rho = hough_point(1)-rho_dist;
@@ -66,11 +68,11 @@ function [img_marked, corners] = hough_transform(img)
                     houghlines(:,2) <= max_the, 2);
              
     houghlines = houghlines(~neighbors, :);
-    done = isempty(houghlines);
   end
   
-  % Remove lines that are not paper edge
-  
+  % We are detecting a rectangle, if a line is a rectangle edge,
+  % it must have another line parallel to it.
+  % Remove lines that have not parallel lines.
   peaks_temp = peaks;
   peaks = [];
   for row = 1:size(peaks_temp,1)
@@ -83,51 +85,87 @@ function [img_marked, corners] = hough_transform(img)
             
     if sum(neighbors) > 1
       peaks = [peaks; point];
-    end
-    
+    end    
   end
   
-  
+  % Choose top 4 lines
   if size(peaks, 1) < 4
     return
+  end  
+  peaks = peaks(1:4, :);
+  
+  % Get intersects
+  corners = [];
+  
+  % Find one set of parallel lines
+  point = peaks(1, :);
+  min_the = point(2)-the_dist;
+  max_the = point(2)+the_dist;    
+  parallels = all(peaks(:,2) >= min_the & 
+                  peaks(:,2) <= max_the, 2);
+                  
+  
+  % Convert discrete bins to actual rhos and thetas                
+  peaks(:, 1) = ceil(peaks(:, 1)-shift);
+  peaks(:, 2) = peaks(:, 2)/double(N) * max(angles);
+                  
+  % Partition the lines into two parallel sets
+  lines1 = peaks(parallels, :);
+  lines2 = peaks(~parallels, :);
+  
+  for i = 1:size(lines1, 1)
+    l1 = lines1(i, :);
+    
+    for j = 1:size(lines2, 1)
+      l2 = lines2(j, :);
+      
+      rho1 = l1(1);
+      theta1 = l1(2);
+      rho2 = l2(1);
+      theta2 = l2(2);
+    
+      thetaMat = [cos(theta1) sin(theta1); cos(theta2) sin(theta2)];
+      rhoVec = [rho1; rho2];
+      
+      isect = inv(thetaMat) * rhoVec;
+      corners = [corners; isect'];
+    end
   end
   
-  peaks = peaks(1:4, :);
-  peaks(:, 1) = ceil(peaks(:, 1)-shift);
-  peaks(:, 2) = peaks(:, 2)/double(N) * max(angles);  
-  
-  
-  % Display edges
+  % Display edges  
+  [Y, X] = size(img_gray);
   
   figure,
-  imshow(uint8(img_gray));
+  imshow(uint8(img));
+  
   for row = 1:size(peaks, 1)
     rho = peaks(row, 1);
     theta = peaks(row, 2);
-    
+
     isPointOk = zeros([4, 1]);
-    
-    y1 = rho/sin(theta);
+
+    y1 = rho/sin(theta);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
     isPointOk(1) = y1 > 0 && y1 <= Y;
-    
+
     y2 = y1 - X*cot(theta);
     isPointOk(2) = y2 > 0 && y2 <= Y;
-    
+
     x3 = rho/cos(theta);
     isPointOk(3) = x3 > 0 && x3 <= X;
-    
+
     x4 = x3 - Y*tan(theta);
     isPointOk(4) = x4 > 0 && x4 <= X;    
+
+    points = [1 y1; X y2; x3 1; x4 Y];
+    points = points(find(isPointOk), :);
     
-    points = (diag(isPointOk) * [1 y1; X y2; x3 1; x4 Y])';
-    points = points(:, ~all(points == 0));
-    line(points(1, :), points(2, :), 'color', 'r', 'linewidth', 2);    
+    line(points(:, 1), points(:, 2), 'color', 'r', 'linewidth', 2);   
   end
+
+end                                                                                                                                                                                                                         
   
-end
   
-  
-    
+                                            
   
   
   
