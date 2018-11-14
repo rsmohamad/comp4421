@@ -2,8 +2,7 @@ clc
 clear
 
 % For octave
-pkg load image
-pkg load statistics
+%pkg load image
 
 % Assignment 2
 % img - original input image
@@ -14,7 +13,7 @@ pkg load statistics
 
 % define the n by yourself
 n = 500;
-inputs = [1];
+inputs = [1:6];
 for i = 1:length(inputs)
     img_name = [num2str(inputs(i)), '.JPG'];
     img = imread(img_name);

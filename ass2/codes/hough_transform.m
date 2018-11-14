@@ -11,8 +11,8 @@ function [img_marked, corners] = hough_transform(img)
 
   % Masks
   avg_mask = 1/25 * ones(5);
-  sobel_x_mask = [-1 0 1; -2 0 2; -1 0 1];
-  sobel_y_mask = [-1 -2 -1; 0 0 0; 1 2 1];
+  sobel_x_mask = [-1 0 1; -1 0 1; -1 0 1];
+  sobel_y_mask = [-1 -1 -1; 0 0 0; 1 1 1];
   
   img_gray = double(rgb2gray(img));
   
@@ -27,12 +27,12 @@ function [img_marked, corners] = hough_transform(img)
   
   % Remove ones at padding
   edge = edge(9+1:end-9, 9+1:end-9);  
-  edge = padarray(edge,[9 9],0);  
+  edge = padarray(edge,[9 9],0);
   
   % Vectorized hough transform
   [y, x] = find(edge);
   numEdges = length(x);  
-  angles = 0:pi/720:pi-(5*pi/720);  
+  angles = 0:pi/720:pi-(8*pi/720);  
   N = length(angles);  
   sinVector = sin(angles);
   cosVector = cos(angles);
@@ -41,58 +41,69 @@ function [img_marked, corners] = hough_transform(img)
   
   rho = floor(([x, y] * [cosVector; sinVector]) + shift);
   map = full(sparse(rho, repmat(1:N, [numEdges, 1]), 1));
-  [val, idx] = sort(map(:), 'descend');
+  [_, idx] = sort(map(:), 'descend');
   
   [rhos thetas] = ind2sub(size(map), idx(1:72)); 
   houghlines = [rhos, thetas];
-  [R T] = size(map)
+  [R T] = size(map);
   
-  %{
-  [_, houghmeans, d] = kmeans(houghlines, 12);
-  total_dist = sum(d);
-  i = 11;
-  while true
-    [_, houghmeans, d] = kmeans(houghmeans, i);
-    if abs(total_dist - sum(d))/double(i) > 50
-      break
-    else
-      i = i-1;
-      total_dist = sum(d);
-    end
-  end
-  %}
-  
-  res = [];
+  % Remove local duplicates
+  peaks = [];
   done = false;
-  i = 1;
-  ndist = 500;
+  rho_dist = shift/8.;
+  the_dist = N/9.;
   while ~done
-    hough_point = houghlines(end, :);
-    res = [res; hough_point];
-    min_rho = max(1, hough_point(1)-ndist)
-    max_rho = min(R, hough_point(1)+ndist)
-    min_the = max(1, hough_point(2)-ndist)
-    max_the = min(T, hough_point(2)+ndist)
+    hough_point = houghlines(1, :);
+    peaks = [peaks; hough_point];
+    min_rho = hough_point(1)-rho_dist;
+    max_rho = hough_point(1)+rho_dist;
+    min_the = hough_point(2)-the_dist;
+    max_the = hough_point(2)+the_dist;
     
-    neighbors = houghlines(all(houghlines(:,1) >= min_rho & houghlines(:,1) <= max_rho & houghlines(:,2) >= min_the & houghlines(:,2) <= max_the, 2), :)
-    houghlines = houghlines(~neighbors, :)
-    done = isempty(houghlines);    
+    neighbors = all(houghlines(:,1) >= min_rho & 
+                    houghlines(:,1) <= max_rho & 
+                    houghlines(:,2) >= min_the & 
+                    houghlines(:,2) <= max_the, 2);
+             
+    houghlines = houghlines(~neighbors, :);
+    done = isempty(houghlines);
+  end
+  
+  % Remove lines that are not paper edge
+  
+  peaks_temp = peaks;
+  peaks = [];
+  for row = 1:size(peaks_temp,1)
+    point = peaks_temp(row, :);
+    min_the = point(2)-the_dist;
+    max_the = point(2)+the_dist;
+    
+    neighbors = all(peaks_temp(:,2) >= min_the & 
+                    peaks_temp(:,2) <= max_the, 2);
+            
+    if sum(neighbors) > 1
+      peaks = [peaks; point];
+    end
     
   end
-
-  houghmeans = res;
-  houghmeans(:, 1) = ceil(houghmeans(:, 1)-shift);
-  houghmeans(:, 2) = houghmeans(:, 2)/double(N) * max(angles);  
+  
+  
+  if size(peaks, 1) < 4
+    return
+  end
+  
+  peaks = peaks(1:4, :);
+  peaks(:, 1) = ceil(peaks(:, 1)-shift);
+  peaks(:, 2) = peaks(:, 2)/double(N) * max(angles);  
   
   
   % Display edges
   
   figure,
-  imshow(uint8(img_gray));  
- 
-  for row = 1:size(houghmeans, 1)
-    rho = houghmeans(row, 1);
-    theta = houghmeans(row, 2);
+  imshow(uint8(img_gray));
+  for row = 1:size(peaks, 1)
+    rho = peaks(row, 1);
+    theta = peaks(row, 2);
     
     isPointOk = zeros([4, 1]);
     
@@ -110,7 +121,7 @@ function [img_marked, corners] = hough_transform(img)
     
     points = (diag(isPointOk) * [1 y1; X y2; x3 1; x4 Y])';
     points = points(:, ~all(points == 0));
-    line(points(1, :), points(2, :), 'color', 'g', 'linewidth', 2);    
+    line(points(1, :), points(2, :), 'color', 'r', 'linewidth', 2);    
   end
   
 end
