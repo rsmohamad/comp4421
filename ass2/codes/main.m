@@ -2,7 +2,7 @@ clc
 clear
 
 % For octave
-%pkg load image
+pkg load image
 
 % Assignment 2
 % img - original input image
@@ -15,14 +15,17 @@ clear
 n = 2;
 inputs = [1:6];
 for i = 1:length(inputs)
-    img_name = [num2str(inputs(i)), '.JPG'];
-    img = imread(img_name);
-    [img_marked, corners] = hough_transform(img);
-    img_warp = img_warping(img, corners, n);
-    
-    
-    %figure, 
-    %subplot(131),imshow(img);
-    %subplot(132),imshow(img_marked);
-    %subplot(133),imshow(img_warp);
+  img_name = [num2str(inputs(i)), '.JPG'];
+  
+  img = imread(img_name);
+  [img_marked, corners] = hough_transform(img);
+  img_warped = img_warping(img, corners, n);
+  
+  figure, 
+  subplot(131),imshow(img);
+  subplot(132),imshow(img_marked);
+  subplot(133),imshow(img_warped);
+  
+  imwrite(img_marked, [num2str(inputs(i)), '_marked.JPG'])
+  imwrite(img_warped, [num2str(inputs(i)), '_warped.JPG'])
 end

@@ -113,6 +113,7 @@ function [img_marked, corners] = hough_transform(img)
   lines1 = peaks(parallels, :);
   lines2 = peaks(~parallels, :);
   
+  % Calculate intersects
   for i = 1:size(lines1, 1)
     l1 = lines1(i, :);
     
@@ -132,12 +133,12 @@ function [img_marked, corners] = hough_transform(img)
     end
   end
   
+  img_marked = img;
+  
+  linemask = zeros(size(img_gray));
+  
   % Display edges  
-  [Y, X] = size(img_gray);
-  
-  figure,
-  imshow(uint8(img));
-  
+  [Y, X] = size(img_gray);  
   for row = 1:size(peaks, 1)
     rho = peaks(row, 1);
     theta = peaks(row, 2);
@@ -159,11 +160,45 @@ function [img_marked, corners] = hough_transform(img)
     points = [1 y1; X y2; x3 1; x4 Y];
     points = points(find(isPointOk), :);
     
-    line(points(:, 1), points(:, 2), 'color', 'r', 'linewidth', 2);   
+    
+    linepoints_x = round(linspace(points(1, 1), points(2, 1), shift));
+    linepoints_y = round(linspace(points(1, 2), points(2, 2), shift));
+    indxs = sub2ind(size(img_gray), linepoints_y, linepoints_x);
+    
+    linemask(indxs) = 255;
+    
   end
   
-  hold on;
-  plot(corners(:, 1), corners(:, 2), 'go', 'MarkerSize', 20, 'MarkerFaceColor', 'g');
+  circle_x = 50 * cosd(0:1:359);
+  circle_y = 50 * sind(0:1:359);
+  
+  % Display intersects
+  isectmask = zeros(size(img_gray));  
+  for i = 1:size(corners, 1)
+    x = corners(i, 1);
+    y = corners(i, 2);
+    
+    points_x = round(circle_x + x);    
+    points_y = round(circle_y + y);
+    
+    isValidX = points_x > 0 & points_x <= X;
+    isValidY = points_y > 0 & points_y <= Y;
+    
+    points_x = points_x(find(isValidX & isValidY));
+    points_y = points_y(find(isValidX & isValidY));
+    
+    indxs = sub2ind(size(img_gray), points_y, points_x);
+    isectmask(indxs) = 255;
+    
+  end
+  
+  se = strel('disk', 12, 0);
+  linemask = imdilate(linemask, se);
+  isectmask = imdilate(isectmask, se);
+    
+  img_marked(:, :, 2) += linemask;
+  img_marked(:, :, 1) += isectmask;
+  img_marked = uint8(img_marked);  
 
 end                                                                                                                                                                                                                         
   

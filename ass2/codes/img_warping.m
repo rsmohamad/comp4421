@@ -71,6 +71,9 @@ function img_warp = img_warping(img, corners, n)
   
   mapping_y = cat(3, widths*y_params(1), heights*y_params(2), wh*y_params(3), one*y_params(4));
   mapping_y = sum(mapping_y, 3);
+  
+  % Bilinear interpolation
+  img_warp = zeros([H W 3]);
    
   for row = 1:size(mapping_x, 1)
     for col = 1:size(mapping_x, 2)
@@ -85,57 +88,19 @@ function img_warp = img_warping(img, corners, n)
       x -= minx;
       y -= miny;
       
-      val = (1-y)*(1-x)*img(miny, minx, :);
-      val += y*(1-x)*img(miny, maxx, :);
-      val += (1-y)*x*img(maxy, minx, :);
-      val += y*x*img(maxy, maxx, :);
+      val = (1-y) * (1-x) * img(miny, minx, :);
+      val += y * (1-x) * img(miny, maxx, :);
+      val += (1-y) * x * img(maxy, minx, :);
+      val += y * x * img(maxy, maxx, :);
       
-      img_warped(row, col, :) = val;
+      img_warp(row, col, :) = val;
       
     end
   end
   
+  img_warp = uint8(img_warp);
+  
 end
-
-
-%classdef BilinearMap
-%   properties
-%      img
-%   end
-%   methods
-%   
-%      function val = map(obj, x, y)      
-%        minx = floor(x);
-%        miny = floor(y);
-%        maxx = ceil(x);
-%        maxy = ceil(y);
-%    
-%        x -= minx;
-%        y -= miny;
-%    
-%        val = (1-y)*(1-x)*obj.img(miny, minx, :);
-%        val += y*(1-x)*obj.img(miny, maxx, :);
-%        val += (1-y)*x*obj.img(maxy, minx, :);
-%        val += y*x*obj.img(maxy, maxx, :);
-%      end
-%      
-%   end
-%end
-
-%  function val = bilinearmap(_x, _y)      
-%    minx = floor(_x);
-%    miny = floor(_y);
-%    maxx = ceil(_x);
-%    maxy = ceil(_y);
-%    
-%    _x -= minx;
-%    _y -= miny;
-%    
-%    val = (1-_y)*(1-_x)*img(miny, minx, :);
-%    val += _y*(1-_x)*img(miny, maxx, :);
-%    val += (1-_y)*_x*img(maxy, minx, :);
-%    val += _y*_x*img(maxy, maxx, :);
-%  end
   
   
   
