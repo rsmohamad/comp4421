@@ -161,6 +161,9 @@ function [img_marked, corners] = hough_transform(img)
     
     line(points(:, 1), points(:, 2), 'color', 'r', 'linewidth', 2);   
   end
+  
+  hold on;
+  plot(corners(:, 1), corners(:, 2), 'go', 'MarkerSize', 20, 'MarkerFaceColor', 'g');
 
 end                                                                                                                                                                                                                         
   

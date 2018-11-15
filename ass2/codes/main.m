@@ -12,14 +12,15 @@ clear
 % n - determine the size of the result image
 
 % define the n by yourself
-n = 500;
+n = 2;
 inputs = [1:6];
 for i = 1:length(inputs)
     img_name = [num2str(inputs(i)), '.JPG'];
     img = imread(img_name);
-    hough_transform(img);
-    %[img_marked, corners] = hough_transform(img);
-    %img_warp = img_warping(img, corners, n);
+    [img_marked, corners] = hough_transform(img);
+    img_warp = img_warping(img, corners, n);
+    
+    
     %figure, 
     %subplot(131),imshow(img);
     %subplot(132),imshow(img_marked);
