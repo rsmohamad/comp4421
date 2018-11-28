@@ -1,6 +1,19 @@
 import cv2
 import numpy as np
+import math
 
+
+def resizeAndScale(img):
+    largerDim = np.max(img.shape)
+    smallerDim = np.min(img.shape)
+    newImg = np.zeros((largerDim, largerDim))
+
+    remain = largerDim - smallerDim
+    start = math.floor(remain/2)
+
+    newImg[:, start:start+smallerDim] = img
+    resizedImg = cv2.resize(newImg, (120, 120), 0, 0, cv2.INTER_LINEAR)
+    return img
 
 def drawBoundingRect(img, rect):
     rStart = rect[0]
@@ -64,11 +77,10 @@ def divideToCols(img, rStart, rEnd):
     return bbox
 
 
-def digitSegmentation(img):
+def extractDigits(img):
 
     # Get the binary image of digits
     imgGray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    imgGray = cv2.blur(imgGray, (5, 5))
 
     se = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (10, 10))
     bgImg = cv2.dilate(imgGray, se)
@@ -82,11 +94,12 @@ def digitSegmentation(img):
 
     digitImgs = []
     markedImg = img.copy()
-    rows = divideToRows(imgBw)
+    rows = divideToRows(imgBw.copy())
     for rStart, rEnd in rows:
         bboxes = divideToCols(imgBw, rStart, rEnd)
         for rect in bboxes:
-            digit = img[rect[0]:rect[1], rect[2]:rect[3]]
+            digit = imgBw[rect[0]:rect[1], rect[2]:rect[3]]
+            digit = resizeAndScale(digit)
             drawBoundingRect(markedImg, rect)
             digitImgs.append(digit)
 

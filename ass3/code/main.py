@@ -1,26 +1,21 @@
 import cv2
 import numpy as np
 import matplotlib.pyplot as plt
-from digit_segmentation import digitSegmentation
+from digit_segmentation import extractDigits
 
 
 def showImage(img):
-    plt.imshow(img)
+    plt.imshow(img, cmap=plt.get_cmap('binary'))
     plt.axis('off')
     plt.show()
 
 
-
-def adaboostClassification():
-    pass
-
-
 def assignment3(input):
     img = cv2.imread(input)
-    markedImg, digits = digitSegmentation(img)
+    markedImg, digits = extractDigits(img)
 
-    # for digit in digits:
-    #     showImage(digit)
+    for digit in digits:
+        showImage(digit)
 
     showImage(markedImg)
 
