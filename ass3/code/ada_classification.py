@@ -1,28 +1,29 @@
 import numpy as np
 import math
 import pickle
+import cv2
 
 # Utils
 from sklearn.metrics import accuracy_score
-import mnist
+import utils
 
 # Classifiers
 from sklearn import tree
+from sklearn import svm
+from sklearn import linear_model
 
 classifiers = []
 classifierWeights = []
-numClassifiers = 20
-X_train, X_test, Y_train, Y_test = mnist.load(test=0.15)
+numClassifiers = 5
+X_train, X_test, Y_train, Y_test = utils.loadMNIST(test=0.15)
 loaded = False
 
-modelFname = 'adaboost_pretrained'
+modelFname = 'adaboost_pretrained_best_dtree'
 
 
-def predict(x):
-
+def predict(x, preprocess=True):
     outputs = list(map(lambda clf: clf.predict([x]), classifiers))
     values = list(map(lambda i: np.sum(np.multiply(classifierWeights, np.equal(outputs, i))), range(10)))
-
     return np.argmax(values)
 
 
@@ -32,8 +33,10 @@ def train():
 
     sampleWeights = np.ones((len(Y_train))) / len(Y_train)
     classifierWeights = np.zeros(numClassifiers)
-    classifiers = [tree.DecisionTreeClassifier(criterion="gini", max_depth=32, max_features=784)
-                   for _ in range(numClassifiers)]
+
+    classifiers = [tree.DecisionTreeClassifier(criterion="gini", max_depth=64, max_features='auto') for _ in range(numClassifiers)]
+    #classifiers = [svm.SVC(kernel='poly', C=5, gamma=0.05, verbose=1) for _ in range(numClassifiers)]
+    #classifiers = [linear_model.logistic.LogisticRegression(multi_class='multinomial', penalty='l1', solver='saga', tol=0.1, verbose=1, n_jobs=4) for _ in range(numClassifiers)]
 
     for i in range(numClassifiers):
         print("Training classifier %d" % (i+1))
@@ -44,7 +47,7 @@ def train():
 
         print("Error: %f" % (err))
 
-        classifierWeights[i] = math.log((1-err)/err) + math.log(9)
+        classifierWeights[i] = math.log(min((1-err)/err, math.exp(20))) + math.log(9)
 
         weightUpdate = classifierWeights[i] * np.not_equal(Y_hat, Y_train)
         weightUpdate = np.exp(weightUpdate)
@@ -65,7 +68,7 @@ def test(verbose=False):
 
     if verbose:
         print("Test accuracy: %f" % (accuracy_score(Y_test, Y_hat)))
-        mnist.showDigits(X_test, Y_hat)
+        utils.showDigits(X_test, Y_hat)
 
 
 def saveModel(fname):
@@ -90,6 +93,7 @@ def loadModel(fname):
             test()
 
     except:
+        print("Model not found/loaded properly, training new model")
         return False
 
     loaded = True
@@ -104,6 +108,7 @@ def adaboostClassification(digits):
 
     labels = np.apply_along_axis(func1d=predict, axis=1, arr=digits)
     return labels
+
 
 
 if __name__ == '__main__':

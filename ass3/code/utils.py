@@ -6,9 +6,20 @@ from sklearn.datasets import fetch_mldata
 from sklearn.model_selection import train_test_split
 
 
-def showDigits(images, targets, sample_size=24, title_text='Digit {}'):
+def showImage(img):
+    plt.imshow(img, cmap=plt.get_cmap('gray'))
+    plt.axis('off')
+    plt.show()
+
+
+def showDigits(images, targets, sample_size=24, title_text='Digit {}', random=True, reshape=True):
     nsamples = sample_size
-    rand_idx = np.random.choice(images.shape[0], nsamples)
+
+    if random:
+        rand_idx = np.random.choice(images.shape[0], nsamples)
+    else:
+        rand_idx = np.array(range(nsamples))
+
     images_and_labels = list(zip(images[rand_idx], targets[rand_idx]))
 
     img = plt.figure(1, figsize=(15, 12), dpi=160)
@@ -16,13 +27,18 @@ def showDigits(images, targets, sample_size=24, title_text='Digit {}'):
         plt.subplot(np.ceil(nsamples / 6.0), 6, index + 1)
         plt.axis('off')
         # each image is flat, we have to reshape to 2D array 28x28-784
-        plt.imshow(image.reshape(28, 28), cmap=plt.cm.gray_r, interpolation='nearest')
+
+        if reshape:
+            plt.imshow(image.reshape(28, 28), cmap=plt.get_cmap('gray'), interpolation='nearest')
+        else:
+            plt.imshow(image, cmap=plt.get_cmap('gray'), interpolation='nearest')
+
         plt.title(title_text.format(label))
 
     plt.show()
 
 
-def load(test=0.15):
+def loadMNIST(test=0.15):
     mnist = fetch_mldata('MNIST Original', data_home='./')
     X = mnist.data
     Y = mnist.target
