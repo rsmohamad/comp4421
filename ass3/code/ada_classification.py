@@ -1,7 +1,6 @@
 import numpy as np
 import math
 import pickle
-import cv2
 
 # Utils
 from sklearn.metrics import accuracy_score
@@ -18,23 +17,22 @@ numClassifiers = 5
 X_train, X_test, Y_train, Y_test = utils.loadMNIST(test=0.15)
 loaded = False
 
-modelFname = 'adaboost_pretrained_best_dtree'
+modelFname = 'clf'
 
 
-def predict(x, preprocess=True):
+def predict(x):
     outputs = list(map(lambda clf: clf.predict([x]), classifiers))
     values = list(map(lambda i: np.sum(np.multiply(classifierWeights, np.equal(outputs, i))), range(10)))
     return np.argmax(values)
 
 
 def train():
-
     global classifiers, classifierWeights
 
     sampleWeights = np.ones((len(Y_train))) / len(Y_train)
     classifierWeights = np.zeros(numClassifiers)
 
-    classifiers = [tree.DecisionTreeClassifier(criterion="gini", max_depth=64, max_features='auto') for _ in range(numClassifiers)]
+    classifiers = [tree.DecisionTreeClassifier(criterion="gini", max_depth=32, max_features='auto') for _ in range(numClassifiers)]
     #classifiers = [svm.SVC(kernel='poly', C=5, gamma=0.05, verbose=1) for _ in range(numClassifiers)]
     #classifiers = [linear_model.logistic.LogisticRegression(multi_class='multinomial', penalty='l1', solver='saga', tol=0.1, verbose=1, n_jobs=4) for _ in range(numClassifiers)]
 

@@ -2,22 +2,19 @@ import cv2
 import numpy as np
 import math
 
-from utils import showImage
-
 
 def preprocessMnist(img):
     largerDim = np.max(img.shape)
     smallerDim = np.min(img.shape)
 
     cv2.normalize(img.copy(), img, alpha=0, beta=255, norm_type=cv2.NORM_MINMAX)
-    _, img = cv2.threshold(img, 80, 255, cv2.THRESH_BINARY_INV | cv2.THRESH_OTSU)
+    _, img = cv2.threshold(img, 50, 255, cv2.THRESH_BINARY_INV | cv2.THRESH_OTSU)
 
-    newImg = np.zeros((largerDim, largerDim))
-
-    seSize = int(max(1., smallerDim / 14))
-    if smallerDim > 28:
+    seSize = int(max(1., smallerDim / 12))
+    if largerDim > 28:
         img = cv2.dilate(img, cv2.getStructuringElement(cv2.MORPH_RECT, (seSize, seSize + 1)))
 
+    newImg = np.zeros((largerDim, largerDim))
     remain = largerDim - smallerDim
     start = math.floor(remain / 2)
 
@@ -26,17 +23,14 @@ def preprocessMnist(img):
     else:
         newImg[start:start + smallerDim, :] = img
 
-    #showImage(newImg)
 
-    resizedImg = cv2.resize(newImg, (20, 20), interpolation=cv2.INTER_AREA)
+    resizedImg = cv2.resize(newImg, (20, 20), interpolation=cv2.INTER_LINEAR)
     resizedImg = cv2.copyMakeBorder(resizedImg, 4, 4, 4, 4, cv2.BORDER_CONSTANT, value=0)
     nonzero_idx = np.nonzero(resizedImg)
-    resizedImg[nonzero_idx] += 7*255
-    resizedImg[nonzero_idx] /= 9
+    resizedImg[nonzero_idx] += 3*255
+    resizedImg[nonzero_idx] /= 4
 
     resizedImg = resizedImg.astype('uint8')
-    # _, resizedImg = cv2.threshold(resizedImg.copy(), 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
-
     return resizedImg
 
 
@@ -76,14 +70,8 @@ def divideToRows(imgBw):
 
     return rows
 
-import matplotlib.pyplot as plt
-
 def divideToCols(img, rStart, rEnd):
     yProjection = np.sum(img[rStart:rEnd, :], axis=0)
-
-    # plt.plot(yProjection)
-    # plt.show()
-
     start = 0
     cols = []
     isInside = False
@@ -148,11 +136,6 @@ def extractDigits(img):
     imgBw = cv2.dilate(imgBw, se)
     imgBw = cv2.erode(imgBw, se)
 
-    se = cv2.getStructuringElement(cv2.MORPH_RECT, (seSize, 1))
-    imgBw = cv2.erode(imgBw, se)
-
-    showImage(imgBw)
-    showImage(textImg)
     digitImgs = np.empty(0)
     markedImg = img.copy()
     rows = divideToRows(imgBw.copy())
