@@ -8,7 +8,7 @@ def preprocessMnist(img):
     smallerDim = np.min(img.shape)
 
     cv2.normalize(img.copy(), img, alpha=0, beta=255, norm_type=cv2.NORM_MINMAX)
-    _, img = cv2.threshold(img, 50, 255, cv2.THRESH_BINARY_INV | cv2.THRESH_OTSU)
+    _, img = cv2.threshold(img, 0, 255, cv2.THRESH_BINARY_INV | cv2.THRESH_OTSU)
 
     seSize = int(max(1., smallerDim / 12))
     if largerDim > 28:
@@ -24,11 +24,11 @@ def preprocessMnist(img):
         newImg[start:start + smallerDim, :] = img
 
 
-    resizedImg = cv2.resize(newImg, (20, 20), interpolation=cv2.INTER_LINEAR)
+    resizedImg = cv2.resize(newImg, (20, 20), interpolation=cv2.INTER_AREA)
     resizedImg = cv2.copyMakeBorder(resizedImg, 4, 4, 4, 4, cv2.BORDER_CONSTANT, value=0)
     nonzero_idx = np.nonzero(resizedImg)
-    resizedImg[nonzero_idx] += 3*255
-    resizedImg[nonzero_idx] /= 4
+    resizedImg[nonzero_idx] += 5*255
+    resizedImg[nonzero_idx] /= 6
 
     resizedImg = resizedImg.astype('uint8')
     return resizedImg

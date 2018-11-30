@@ -2,11 +2,107 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fe255bd2-3712-475e-9ce3-24facfdcbf3d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../Makefile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../a3.tex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../assignment3.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/adaboost_written.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../result_images/digits_of_image_1/1_1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../result_images/digits_of_image_1/1_10.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../result_images/digits_of_image_1/1_11.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../result_images/digits_of_image_1/1_12.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../result_images/digits_of_image_1/1_13.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../result_images/digits_of_image_1/1_14.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../result_images/digits_of_image_1/1_2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../result_images/digits_of_image_1/1_3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../result_images/digits_of_image_1/1_4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../result_images/digits_of_image_1/1_5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../result_images/digits_of_image_1/1_6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../result_images/digits_of_image_1/1_7.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../result_images/digits_of_image_1/1_8.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../result_images/digits_of_image_1/1_9.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../result_images/digits_of_image_1/1_label.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../result_images/digits_of_image_1/1_segmented.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../result_images/digits_of_image_2/2_1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../result_images/digits_of_image_2/2_10.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../result_images/digits_of_image_2/2_11.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../result_images/digits_of_image_2/2_12.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../result_images/digits_of_image_2/2_2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../result_images/digits_of_image_2/2_3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../result_images/digits_of_image_2/2_4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../result_images/digits_of_image_2/2_5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../result_images/digits_of_image_2/2_6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../result_images/digits_of_image_2/2_7.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../result_images/digits_of_image_2/2_8.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../result_images/digits_of_image_2/2_9.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../result_images/digits_of_image_2/2_label.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../result_images/digits_of_image_2/2_segmented.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../result_images/digits_of_image_3/3_1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../result_images/digits_of_image_3/3_10.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../result_images/digits_of_image_3/3_11.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../result_images/digits_of_image_3/3_12.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../result_images/digits_of_image_3/3_13.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../result_images/digits_of_image_3/3_14.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../result_images/digits_of_image_3/3_15.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../result_images/digits_of_image_3/3_2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../result_images/digits_of_image_3/3_3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../result_images/digits_of_image_3/3_4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../result_images/digits_of_image_3/3_5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../result_images/digits_of_image_3/3_6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../result_images/digits_of_image_3/3_7.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../result_images/digits_of_image_3/3_8.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../result_images/digits_of_image_3/3_9.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../result_images/digits_of_image_3/3_label.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../result_images/digits_of_image_3/3_segmented.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ada_classification.py" beforeDir="false" afterPath="$PROJECT_DIR$/ada_classification.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/adaboost_pretrained_dtree" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/digit_segmentation.py" beforeDir="false" afterPath="$PROJECT_DIR$/digit_segmentation.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../result_images/digits of image 1/1_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../result_images/digits of image 1/1_10.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../result_images/digits of image 1/1_11.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../result_images/digits of image 1/1_12.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../result_images/digits of image 1/1_13.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../result_images/digits of image 1/1_14.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../result_images/digits of image 1/1_2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../result_images/digits of image 1/1_3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../result_images/digits of image 1/1_4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../result_images/digits of image 1/1_5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../result_images/digits of image 1/1_6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../result_images/digits of image 1/1_7.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../result_images/digits of image 1/1_8.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../result_images/digits of image 1/1_9.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../result_images/digits of image 1/1_label.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../result_images/digits of image 1/1_segmented.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../result_images/digits of image 2/2_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../result_images/digits of image 2/2_10.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../result_images/digits of image 2/2_11.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../result_images/digits of image 2/2_12.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../result_images/digits of image 2/2_2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../result_images/digits of image 2/2_3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../result_images/digits of image 2/2_4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../result_images/digits of image 2/2_5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../result_images/digits of image 2/2_6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../result_images/digits of image 2/2_7.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../result_images/digits of image 2/2_8.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../result_images/digits of image 2/2_9.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../result_images/digits of image 2/2_label.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../result_images/digits of image 2/2_segmented.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../result_images/digits of image 3/3_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../result_images/digits of image 3/3_10.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../result_images/digits of image 3/3_11.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../result_images/digits of image 3/3_12.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../result_images/digits of image 3/3_13.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../result_images/digits of image 3/3_14.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../result_images/digits of image 3/3_15.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../result_images/digits of image 3/3_2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../result_images/digits of image 3/3_3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../result_images/digits of image 3/3_4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../result_images/digits of image 3/3_5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../result_images/digits of image 3/3_6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../result_images/digits of image 3/3_7.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../result_images/digits of image 3/3_8.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../result_images/digits of image 3/3_9.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../result_images/digits of image 3/3_label.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../result_images/digits of image 3/3_segmented.png" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -33,11 +129,26 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="112">
-              <caret line="4" column="12" lean-forward="true" selection-start-line="4" selection-start-column="12" selection-end-line="4" selection-end-column="12" />
+            <state relative-caret-position="616">
+              <caret line="22" selection-start-line="22" selection-end-line="22" />
+              <folding>
+                <element signature="e#0#10#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/adaboost_written.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="510">
+              <caret line="36" column="32" lean-forward="true" selection-start-line="36" selection-start-column="32" selection-end-line="36" selection-end-column="32" />
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -45,8 +156,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/digit_segmentation.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="9" column="80" lean-forward="true" selection-start-line="9" selection-start-column="80" selection-end-line="9" selection-end-column="80" />
+            <state relative-caret-position="2">
+              <caret line="23" column="37" selection-start-line="23" selection-start-column="37" selection-end-line="23" selection-end-column="37" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -57,8 +168,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/utils.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="286">
-              <caret line="30" column="19" lean-forward="true" selection-start-line="30" selection-start-column="19" selection-end-line="30" selection-end-column="19" />
+            <state relative-caret-position="197">
+              <caret line="38" selection-start-line="38" selection-end-line="38" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -69,8 +180,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ada_classification.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="588">
-              <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
+            <state relative-caret-position="280">
+              <caret line="21" selection-start-line="21" selection-end-line="21" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -98,17 +209,19 @@
         <option value="$PROJECT_DIR$/load_test.py" />
         <option value="$PROJECT_DIR$/mnist.py" />
         <option value="$PROJECT_DIR$/utils.py" />
-        <option value="$PROJECT_DIR$/digit_segmentation.py" />
         <option value="$PROJECT_DIR$/ada_classification.py" />
+        <option value="$PROJECT_DIR$/output.txt" />
+        <option value="$PROJECT_DIR$/adaboost_written.py" />
         <option value="$PROJECT_DIR$/main.py" />
+        <option value="$PROJECT_DIR$/digit_segmentation.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="443" />
-    <option name="y" value="-4" />
+    <option name="x" value="221" />
+    <option name="y" value="5" />
     <option name="width" value="1402" />
-    <option name="height" value="1029" />
+    <option name="height" value="1022" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -323,12 +436,13 @@
       <workItem from="1543459171987" duration="119000" />
       <workItem from="1543459315654" duration="9311000" />
       <workItem from="1543475482188" duration="2695000" />
-      <workItem from="1543480707904" duration="3581000" />
+      <workItem from="1543480707904" duration="3911000" />
+      <workItem from="1543550798323" duration="8692000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="98681000" />
+    <option name="totallyTimeSpent" value="107703000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -340,10 +454,9 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="64" y="-11" width="1857" height="1092" extended-state="6" />
-    <editor active="true" />
+    <frame x="64" y="-4" width="1857" height="1085" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1708126" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.35433942" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -357,14 +470,14 @@
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.3291536" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50082916" side_tool="true" weight="0.3291536" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.4991708" visible="true" weight="0.32706374" />
+      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.4991708" weight="0.9352142" />
       <window_info anchor="bottom" id="Python Console" order="12" sideWeight="0.4997236" weight="0.3291536" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="SciView" order="3" sideWeight="0.68635726" weight="0.8048646" />
       <window_info anchor="right" id="Database" order="4" weight="0.32946378" />
-      <window_info anchor="right" x="0" y="0" width="414" height="892" id="Documentation" order="5" sideWeight="0.31364277" side_tool="true" weight="0.65174127" />
+      <window_info anchor="right" x="0" y="0" width="414" height="892" id="Documentation" order="5" sideWeight="0.31364277" side_tool="true" weight="0.3409091" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -403,8 +516,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ada_classification.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="588">
-          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
+        <state relative-caret-position="280">
+          <caret line="21" selection-start-line="21" selection-end-line="21" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
@@ -413,28 +526,48 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/utils.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="30" column="19" lean-forward="true" selection-start-line="30" selection-start-column="19" selection-end-line="30" selection-end-column="19" />
+        <state relative-caret-position="197">
+          <caret line="38" selection-start-line="38" selection-end-line="38" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/digit_segmentation.py">
+    <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="9" column="80" lean-forward="true" selection-start-line="9" selection-start-column="80" selection-end-line="9" selection-end-column="80" />
+        <state relative-caret-position="616">
+          <caret line="22" selection-start-line="22" selection-end-line="22" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.py">
+    <entry file="file://$PROJECT_DIR$/digit_segmentation.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
-          <caret line="4" column="12" lean-forward="true" selection-start-line="4" selection-start-column="12" selection-end-line="4" selection-end-column="12" />
+        <state relative-caret-position="2">
+          <caret line="23" column="37" selection-start-line="23" selection-start-column="37" selection-end-line="23" selection-end-column="37" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/output.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="423">
+          <caret line="24" column="29" selection-start-line="24" selection-start-column="29" selection-end-line="24" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/adaboost_written.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="36" column="32" lean-forward="true" selection-start-line="36" selection-start-column="32" selection-end-line="36" selection-end-column="32" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -12,6 +12,7 @@ def assignment3(input):
     labels = adaboostClassification(digits)
     utils.showDigits(digits, labels, labels.shape[0], title_text="label = {}", random=False)
     utils.showImage(markedImg)
+    return markedImg
 
 
 if __name__ == "__main__":
